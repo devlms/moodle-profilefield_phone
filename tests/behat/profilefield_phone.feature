@@ -1,4 +1,4 @@
-@core_user @profilefield_phone
+@core_user @profilefield @profilefield_phone
 Feature: Phone number profile field
   In order to reach learners by phone
   As an admin

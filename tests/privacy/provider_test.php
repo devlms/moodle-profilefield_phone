@@ -32,6 +32,7 @@ use core_privacy\local\request\approved_userlist;
  *
  * @copyright  2018 Mihail Geshoski <mihail@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers     \profilefield_phone\privacy\provider
  */
 final class provider_test extends provider_testcase {
     /**

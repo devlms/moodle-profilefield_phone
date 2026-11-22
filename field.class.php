@@ -32,6 +32,9 @@
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class profile_field_phone extends profile_field_base {
+    /** @var string[] Country codes whose national numbers keep their leading 0 in international form. */
+    const KEEP_ZERO = ['39', '378', '379'];
+
     /**
      * Clean a typed number to E.164.
      *
@@ -58,7 +61,8 @@ class profile_field_phone extends profile_field_base {
             if ($country === '' || !ctype_digit($country)) {
                 return null;
             }
-            $digits = $country . ltrim($digits, '0');
+            // Most countries drop the trunk prefix 0 after the country code; Italy, San Marino and the Vatican keep it.
+            $digits = $country . (in_array($country, self::KEEP_ZERO, true) ? $digits : ltrim($digits, '0'));
         }
         $length = strlen($digits);
         if ($length < 8 || $length > 15 || $digits[0] === '0') {

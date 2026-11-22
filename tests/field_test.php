@@ -42,6 +42,9 @@ final class field_test extends \advanced_testcase {
         $this->assertNull(\profile_field_phone::normalise('+1234567890123456', ''), 'Too long');
         $this->assertNull(\profile_field_phone::normalise('call me', '213'));
         $this->assertSame('', \profile_field_phone::normalise('  ', '213'));
+        // Italy, San Marino and the Vatican keep the leading 0 of landline numbers after the country code.
+        $this->assertSame('+390612345678', \profile_field_phone::normalise('06 1234 5678', '39'));
+        $this->assertSame('+393471234567', \profile_field_phone::normalise('347 123 4567', '39'));
     }
 
     /**
